@@ -70,7 +70,7 @@ caption {
 			<th>id</th>
 			<th>title</th>
 			<th>Description</th>
-			<th>completed</th>
+			<th>Edit</th>
 			<th>delete</th>
 		</tr>
 
@@ -83,7 +83,7 @@ caption {
 			<td><%=task.getTaskTitle()%></td>
 			<td><%=task.getTaskDescription()%></td>
 			<!-- Have not written code for completed. If someone can help, do let me know... while I think.. -->
-			<td><a href="#">completed</a></td>
+			<td><a href="edit-task?taskId=<%=task.getTaskId()%>">edit</a></td>
 			<td><a href="delete-task?taskId=<%=task.getTaskId()%>">delete</a></td>
 		</tr>
 

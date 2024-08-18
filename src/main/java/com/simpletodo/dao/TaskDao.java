@@ -18,4 +18,13 @@ public class TaskDao {
 	public static List<Task> getAllTasks() {
 		return DBConnection.getAllTasks();
 	}
+	
+	public static void updateTask(Task task) {
+		DBConnection.updateTask(task);
+		
+	}
+	
+	public static Task findTaskById(int taskId) {
+		return DBConnection.findTaskById(taskId);
+	}
 }

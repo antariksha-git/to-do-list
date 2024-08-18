@@ -51,6 +51,42 @@ public class DBConnection {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void updateTask(Task task) {
+		try(Connection con = DriverManager.getConnection(URL, USER, PASS);
+				PreparedStatement ps = con.prepareStatement("UPDATE task SET title = ?, description = ? WHERE id = ?")) {
+			
+			ps.setString(1, task.getTaskTitle());
+			ps.setString(2, task.getTaskDescription());
+			ps.setInt(3, task.getTaskId());
+
+			ps.executeUpdate();
+				
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static Task findTaskById(int taskId) {
+		Task task = null;
+		try (Connection con = DriverManager.getConnection(URL, USER, PASS);
+				PreparedStatement ps = con.prepareStatement("SELECT * FROM task WHERE id = ?")) {
+			
+			ps.setInt(1, taskId);
+			
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				task = new Task(rs.getInt(1), rs.getString(2), rs.getString(3));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return task;
+	}
 
 	public static List<Task> getAllTasks() {
 
